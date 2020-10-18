@@ -1,37 +1,19 @@
 <template>
   <nav>
-    <v-toolbar flat app class="grey lighten-4">
-      <v-app-bar-nav-icon
-        class="grey--text"
-        @click="drawer = !drawer"
-      ></v-app-bar-nav-icon>
-      <v-toolbar-title class="text-uppercase grey--text">
-        <span class="font-weight-light">vue</span>
-        <span>app</span>
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn text color="grey">
-        <span>Sign In</span>
-        <v-icon right>mdi-vuetify</v-icon>
-      </v-btn>
-    </v-toolbar>
-
-    <v-navigation-drawer app v-model="drawer" color="pink lighten-4">
-      <v-list-item class="px-2">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-title>John Leider</v-list-item-title>
-
-        <v-btn icon @click="drawer = !drawer">
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
+    <v-navigation-drawer app color="pink lighten-4">
+      <v-list-item class="px-5">
+        <div class="mx-auto">
+          <span class="font-weight-light">vue</span>
+          <span>app</span>
+        </div>
       </v-list-item>
 
       <v-divider></v-divider>
+
+      <v-list-item class="px-5"> <TilThatDate /> </v-list-item>
+
+      <v-divider></v-divider>
+
       <v-list dense>
         <v-list-item
           link
@@ -54,13 +36,16 @@
 </template>
 
 <script>
+import TilThatDate from "./TilThatDate";
+
 export default {
+  components: { TilThatDate },
   data() {
     return {
       drawer: false,
       links: [
         { icon: "dashboard", title: "Dashboard", route: "/" },
-        { icon: "folder", title: "My Project", route: "/project" },
+        { icon: "folder", title: "Category", route: "/category" },
         { icon: "person", title: "Team", route: "/team" },
       ],
     };

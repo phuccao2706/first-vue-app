@@ -1,19 +1,7 @@
 <template>
-  <div class="home">
-    <h1>Homepage</h1>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod perferendis
-      qui reiciendis officiis magni autem ab? Aperiam tempore unde, minima
-      soluta eius eaque harum optio recusandae nemo sapiente. Quod, magni? rem
-      rem
-    </p>
-
-    <v-btn class="pink white--text">Click me</v-btn>
+  <div class="dashboard">
+    <p class="text-h3 ml-5 mt-5 pink--text text--lighten-4">Dashboard</p>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Home",
-};
-</script>
+<script></script>
