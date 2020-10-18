@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <v-btn
-      @click="this._getToken"
+      @click="this.anotherLogin"
       :loading="this.isLoading"
       class="pink white--text"
       >Login</v-btn
@@ -11,7 +11,6 @@
 
 <script>
 import router from "@/router";
-import { getToken } from "@/services";
 import { setAccessToken } from "@/utils";
 export default {
   name: "Login",
@@ -19,16 +18,34 @@ export default {
     isLoading: false,
   }),
   methods: {
-    async _getToken() {
-      this.isLoading = true;
-      const accessToken = await getToken();
-      this.isLoading = false;
-
+    async _getToken(accessToken) {
       setAccessToken(accessToken);
-      console.log(router);
       router.push("/");
       return accessToken;
     },
+    anotherLogin() {
+      const { VUE_APP_CLIENT_ID } = process.env;
+      const redirect_uri = "http://localhost:8080/Login";
+      const scopes = "streaming, user-read-email, user-read-private";
+
+      let popup = window.open(
+        `https://accounts.spotify.com/authorize?client_id=${VUE_APP_CLIENT_ID}&response_type=token&redirect_uri=${redirect_uri}&scope=${scopes}&show_dialog=true`,
+        "Login with Spotify",
+        "width=800,height=600"
+      );
+
+      window.spotifyCallback = (payload) => {
+        popup.close();
+        this._getToken(payload);
+      };
+    },
+  },
+  mounted() {
+    const token = window.location.hash.substr(1).split("&")[0].split("=")[1];
+
+    if (token) {
+      window.opener.spotifyCallback(token);
+    }
   },
 };
 </script>

@@ -1,7 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
-import Project from "../views/Project.vue";
+import Category from "../views/Category/Category.vue";
+import CategoryDetail from "../views/Category/CategoryDetail.vue";
+import Playlist from "../views/Playlist/Playlist";
+
 import Team from "../views/Team.vue";
 import Login from "../views/Login.vue";
 
@@ -16,9 +19,19 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/project",
-    name: "Project",
-    component: Project,
+    path: "/category",
+    name: "Category",
+    component: Category,
+  },
+  {
+    path: "/category/:id",
+    name: "CategoryDetail",
+    component: CategoryDetail,
+  },
+  {
+    path: "/playlist/:id",
+    name: "Playlist",
+    component: Playlist,
   },
   {
     path: "/team",
@@ -39,7 +52,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
   if (to.name !== "Login" && !isLoggedIn()) next({ name: "Login" });
   else next();
 });

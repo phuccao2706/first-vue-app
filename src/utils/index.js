@@ -5,6 +5,9 @@ export const isLoggedIn = () => {
 };
 
 export const setAccessToken = (accessToken) => {
-  console.log(accessToken);
   localStorage.setItem("access-token", accessToken);
+};
+
+export const removeAccesstoken = () => {
+  localStorage.removeItem("access-token");
 };
