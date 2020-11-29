@@ -41,8 +41,20 @@ export const getGenres = async () => {
   return data;
 };
 
+export const getCategory = async (id) => {
+  const { data } = await Axios.get(`browse/categories/${id}`);
+
+  return data;
+};
+
 export const getCategoryPlaylists = async (id) => {
   const { data } = await Axios.get(`browse/categories/${id}/playlists`);
+
+  return data;
+};
+
+export const getPlaylist = async (id) => {
+  const { data } = await Axios.get(`playlists/${id}`);
 
   return data;
 };

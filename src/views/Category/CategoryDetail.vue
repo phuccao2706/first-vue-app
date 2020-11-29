@@ -1,7 +1,7 @@
 <template>
   <div class="category-detail">
     <p class="text-h3 ml-5 mt-5 pink--text text--lighten-4">
-      <!-- {{ this.categoryDetail.name }} -->
+      {{ name }}
     </p>
 
     <v-container>
@@ -9,19 +9,12 @@
         <v-col
           v-for="playlist in playlists"
           v-bind:key="playlist.id"
-          class="md-4"
+          cols="12"
+          md="3"
+          class="md-5"
         >
-          <v-card
-            class="mx-auto"
-            min-width="275px"
-            max-width="275px"
-            @click="navigateToDetail(playlist.id)"
-          >
-            <v-img
-              class="white--text align-end"
-              height="275px"
-              :src="playlist.images[0].url"
-            >
+          <v-card class="mx-auto" @click="navigateToDetail(playlist.id)">
+            <v-img class="white--text align-end" :src="playlist.images[0].url">
               <v-card-title class="category--title">
                 {{ playlist.name }}
               </v-card-title>
@@ -35,12 +28,13 @@
 
 <script>
 import router from "@/router";
-import { getCategoryPlaylists } from "@/services";
+import { getCategoryPlaylists, getCategory } from "@/services";
 
 export default {
   Name: "CategoryDetail",
   data: () => ({
     playlists: [],
+    name: "",
   }),
   methods: {
     navigateToDetail(id) {
@@ -48,7 +42,10 @@ export default {
     },
     async _getCategoryPlaylists(id) {
       const { playlists } = await getCategoryPlaylists(id);
+      const { name } = await getCategory(id);
+
       this.playlists = playlists.items;
+      this.name = name;
     },
   },
 
