@@ -12,6 +12,8 @@
 <script>
 import router from "@/router";
 import { setAccessToken } from "@/utils";
+import initPlayer from "@/utils/initPlayer";
+
 export default {
   name: "Login",
   data: () => ({
@@ -37,6 +39,7 @@ export default {
       window.spotifyCallback = (payload) => {
         popup.close();
         this._getToken(payload);
+        initPlayer();
       };
     },
   },

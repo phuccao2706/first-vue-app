@@ -31,15 +31,20 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list-item class="px-5"> <PlayerControl /> </v-list-item>
     </v-navigation-drawer>
   </nav>
 </template>
 
 <script>
 import TilThatDate from "./TilThatDate";
+import PlayerControl from "./PlayerControl";
 
 export default {
-  components: { TilThatDate },
+  components: { TilThatDate, PlayerControl },
   data() {
     return {
       drawer: false,

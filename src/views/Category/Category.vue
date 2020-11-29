@@ -46,7 +46,6 @@ export default {
     },
     async getGen() {
       const { categories } = await getGenres();
-
       this.categories = categories.items;
       return categories;
     },
